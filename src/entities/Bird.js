@@ -49,45 +49,87 @@ class Bird {
         const ctx = renderer.ctx;
         const centerX = this.x + this.width / 2;
         const centerY = this.y + this.height / 2;
-        
+
         ctx.save();
         ctx.translate(centerX, centerY);
         ctx.rotate(this.rotation);
-        
-        // Draw bird body (oval)
-        ctx.fillStyle = '#FFD700';
+
+        // Flugzeug-Rumpf (Fuselage)
+        ctx.fillStyle = '#E8E8E8';
         ctx.beginPath();
-        ctx.ellipse(0, 0, this.width/2, this.height/2 - 2, 0, 0, Math.PI * 2);
+        ctx.ellipse(0, 0, this.width / 2, this.height / 3, 0, 0, Math.PI * 2);
         ctx.fill();
-        
-        // Draw wing (animated)
-        const wingOffset = Math.sin(this.wingFlap) * 3;
-        ctx.fillStyle = '#FFA500';
+        ctx.strokeStyle = '#B0B0B0';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Nase (Nose cone)
+        ctx.fillStyle = '#4A90D9';
         ctx.beginPath();
-        ctx.ellipse(-2, wingOffset, this.width/3, this.height/3, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Draw beak
-        ctx.fillStyle = '#FF8C00';
-        ctx.beginPath();
-        ctx.moveTo(this.width/2 - 2, -2);
-        ctx.lineTo(this.width/2 + 4, 0);
-        ctx.lineTo(this.width/2 - 2, 2);
+        ctx.moveTo(this.width / 2 - 4, -3);
+        ctx.lineTo(this.width / 2 + 4, 0);
+        ctx.lineTo(this.width / 2 - 4, 3);
         ctx.closePath();
         ctx.fill();
-        
-        // Draw eye
-        ctx.fillStyle = '#000';
+
+        // Cockpit-Fenster
+        ctx.fillStyle = '#87CEEB';
         ctx.beginPath();
-        ctx.arc(2, -3, 2, 0, Math.PI * 2);
+        ctx.ellipse(6, -1, 4, 2.5, 0, 0, Math.PI * 2);
         ctx.fill();
-        
-        // Eye highlight
-        ctx.fillStyle = '#FFF';
+        ctx.strokeStyle = '#4A90D9';
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+
+        // Hauptflügel (Main wing)
+        ctx.fillStyle = '#C0C0C0';
         ctx.beginPath();
-        ctx.arc(3, -4, 1, 0, Math.PI * 2);
+        ctx.moveTo(-4, 0);
+        ctx.lineTo(-2, -12);
+        ctx.lineTo(4, -12);
+        ctx.lineTo(6, 0);
+        ctx.closePath();
         ctx.fill();
-        
+        ctx.strokeStyle = '#909090';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Unterer Flügelteil (sichtbar)
+        ctx.fillStyle = '#D0D0D0';
+        ctx.beginPath();
+        ctx.moveTo(-4, 0);
+        ctx.lineTo(-2, 10);
+        ctx.lineTo(4, 10);
+        ctx.lineTo(6, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Heckflügel (Tail)
+        ctx.fillStyle = '#C0C0C0';
+        ctx.beginPath();
+        ctx.moveTo(-this.width / 2 + 2, 0);
+        ctx.lineTo(-this.width / 2 - 2, -8);
+        ctx.lineTo(-this.width / 2 + 6, -8);
+        ctx.lineTo(-this.width / 2 + 4, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Roter Streifen am Rumpf
+        ctx.strokeStyle = '#D9534F';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(-this.width / 2 + 8, 0);
+        ctx.lineTo(this.width / 2 - 8, 0);
+        ctx.stroke();
+
+        // Triebwerk-Andeutung
+        ctx.fillStyle = '#505050';
+        ctx.beginPath();
+        ctx.ellipse(-2, 6, 3, 2, 0, 0, Math.PI * 2);
+        ctx.fill();
+
         ctx.restore();
     }
     

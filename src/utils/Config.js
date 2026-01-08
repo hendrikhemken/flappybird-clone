@@ -7,10 +7,10 @@ const CONFIG = {
     BIRD: {
         X: 80,
         Y: 250,
-        WIDTH: 20,
-        HEIGHT: 20,
-        GRAVITY: 0.6,
-        JUMP_FORCE: -12,
+        WIDTH: 34,
+        HEIGHT: 16,
+        GRAVITY: 0.5,
+        JUMP_FORCE: -7,
         COLOR: '#FFD700'
     },
     
